@@ -70,3 +70,7 @@ lib/generated_plugin_registrant.dart
 android/*
 ios/*
 web/*
+*.DS_Store
+.framework.iml
+test/*
+pubspec.*

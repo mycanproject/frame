@@ -67,8 +67,13 @@ class DayList extends StatelessWidget {
               height: availableSizeHeight,
               child: ListView.builder(
                   itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) => DayBox(snapshot.data![index],
-                      availableSizeHeight, availableSizeWidth * 0.2, true)),
+                  itemBuilder: (context, index) => DayBox(
+                      snapshot.data![index],
+                      availableSizeHeight,
+                      availableSizeWidth,
+                      true,
+                      false,
+                      snapshot.data!.length)),
             );
           }
         });

@@ -4,8 +4,11 @@
 // showday は日付
 
 import 'package:flutter/cupertino.dart';
-import '../frame/TodoPages/TodoDate.dart';
+import 'package:flutter/material.dart';
 import '../frame/SettingPages/ChangeColor.dart';
+import '../frame/SettingPages/ChangeFont.dart';
+import '../frame/TodoPages/DayBox.dart';
+import '../frame/TodoPages/TodoDataRow.dart';
 
 class TodoInMain extends StatelessWidget {
   // MainPage.dart/_SliderViewから参照
@@ -16,27 +19,90 @@ class TodoInMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: availableSize,
-      height: availableSize, //箱のサイズを指定
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 3, //枠線のサイズ
-          color: Color.fromARGB(150, changeColorMain.red, changeColorMain.green,
-              changeColorMain.blue), // 枠線の色をメインカラー(不透明度150)で設定
-        ),
-        borderRadius: BorderRadius.circular(10), //角を30で丸める
-        color: Color.fromARGB(200, changeColorSub.red, changeColorSub.green,
-            changeColorSub.blue), // サブカラーを不透明度150で設定
-        boxShadow: [
-          BoxShadow(
-            color: shadowColor, // 影の色をChangeColor.dartから取得する
-            offset: Offset(0, 10), // y方向(下方向)に10ずらす
-            blurRadius: 5, // ぼかし具合
-          ),
-        ],
-      ),
-      child: TodoDate(availableSize, availableSize),
-    );
+    return FutureBuilder(
+        future: getTodoDate(),
+        builder:
+            (BuildContext context, AsyncSnapshot<List<TodoDataRow>> snapshot) {
+          if (!snapshot.hasData) {
+            return Container(
+              width: availableSize,
+              height: availableSize,
+              child: Text(
+                "Now Loading",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: fontMain,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w700,
+                    shadows: [
+                      Shadow(
+                        color: shadowColor,
+                        offset: Offset(0, 3),
+                        blurRadius: 2,
+                      )
+                    ]),
+                textAlign: TextAlign.center,
+              ),
+            );
+          } else if (snapshot.data!.length == 0) {
+            return Container(
+              width: availableSize,
+              height: availableSize,
+              child: Text(
+                "Mission Complete!",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: fontMain,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w700,
+                    shadows: [
+                      Shadow(
+                        color: shadowColor,
+                        offset: Offset(0, 3),
+                        blurRadius: 2,
+                      )
+                    ]),
+                textAlign: TextAlign.center,
+              ),
+            );
+          } else {
+            return Container(
+              width: availableSize,
+              height: availableSize,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 3, //枠線のサイズ
+                  color: Color.fromARGB(
+                      150,
+                      changeColorMain.red,
+                      changeColorMain.green,
+                      changeColorMain.blue), // 枠線の色をメインカラー(不透明度150)で設定
+                ),
+                borderRadius: BorderRadius.circular(10), //角を30で丸める
+                color: Color.fromARGB(
+                    200,
+                    changeColorSub.red,
+                    changeColorSub.green,
+                    changeColorSub.blue), // サブカラーを不透明度150で設定
+                boxShadow: [
+                  BoxShadow(
+                    color: shadowColor, // 影の色をChangeColor.dartから取得する
+                    offset: Offset(0, 10), // y方向(下方向)に10ずらす
+                    blurRadius: 5, // ぼかし具合
+                  ),
+                ],
+              ),
+              child: ListView.builder(
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (context, index) => DayBox(
+                      snapshot.data![index],
+                      availableSize,
+                      availableSize,
+                      true,
+                      true,
+                      snapshot.data!.length)),
+            );
+          }
+        });
   }
 }

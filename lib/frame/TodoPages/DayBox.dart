@@ -18,17 +18,23 @@ class DayBox extends StatelessWidget {
   final double availableSizeHeight;
   final double availableSizeWidth;
   final bool onListView;
+  final bool onMain;
+  final int length;
 
   DayBox(this.data, this.availableSizeHeight, this.availableSizeWidth,
-      this.onListView);
+      this.onListView, this.onMain, this.length);
 
   @override
   Widget build(BuildContext context) {
-    DateTime showday =
-        DateTime(int.parse(data!.datetimeMonth), int.parse(data!.datetimeDay));
+    DateTime showday = DateTime(
+        int.parse(data!.datetimeYear),
+        int.parse(data!.datetimeMonth),
+        int.parse(data!.datetimeDay),
+        int.parse(data!.datetimeHour),
+        int.parse(data!.datetimeMinute));
     return Container(
         width: availableSizeWidth * 0.8,
-        height: availableSizeHeight * 0.8,
+        height: availableSizeHeight * 0.5,
         decoration: BoxDecoration(
             color: Color.fromARGB(255, changeColorSub.red, changeColorSub.green,
                 changeColorSub.blue),
@@ -48,28 +54,40 @@ class DayBox extends StatelessWidget {
               ),
             ]),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(
-              DateFormat("MM月 dd日").format(showday),
-              style: TextStyle(
-                color: Color.fromARGB(150, changeColorMain.red,
-                    changeColorMain.green, changeColorMain.blue),
-                fontFamily: fontMain,
-                fontSize: (onListView) ? 20 : 10,
-                fontWeight: FontWeight.w700,
-                shadows: [
-                  Shadow(
-                    color: shadowColor,
-                    offset: Offset(0, 3),
-                    blurRadius: 3,
+            if (!onMain)
+              Container(
+                width: availableSizeWidth,
+                height: (onListView)
+                    ? availableSizeHeight * 0.15
+                    : availableSizeHeight * 0.9,
+                child: Text(
+                  DateFormat("MM月 dd日").format(showday),
+                  style: TextStyle(
+                    color: Color.fromARGB(150, changeColorMain.red,
+                        changeColorMain.green, changeColorMain.blue),
+                    fontFamily: fontMain,
+                    fontSize: (onListView) ? 20 : 10,
+                    fontWeight: FontWeight.w700,
+                    shadows: [
+                      Shadow(
+                        color: shadowColor,
+                        offset: Offset(0, 3),
+                        blurRadius: 3,
+                      ),
+                    ],
                   ),
-                ],
+                  textAlign: TextAlign.left,
+                ),
               ),
-              textAlign: TextAlign.left,
-            ),
             if (onListView)
-              ShowdayTodoListView(
-                  showday, availableSizeHeight, availableSizeWidth * 0.8, data),
+              Container(
+                width: availableSizeWidth,
+                height: availableSizeHeight * 0.8,
+                child: ShowdayTodoListView(showday, availableSizeHeight * 0.5,
+                    availableSizeWidth, data, onMain),
+              ),
           ],
         ));
   }

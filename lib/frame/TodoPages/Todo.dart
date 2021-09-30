@@ -17,22 +17,28 @@ class Todo extends StatelessWidget {
   final double availableSizeWidth;
   final int num;
   final TodoDataRow? data;
+  final bool onMain;
 
-  Todo(this.availableSizeHeight, this.availableSizeWidth, this.num, this.data);
+  Todo(this.availableSizeHeight, this.availableSizeWidth, this.num, this.data,
+      this.onMain);
 
   @override
   Widget build(BuildContext context) {
-    DateTime showday =
-        DateTime(int.parse(data!.datetimeMonth), int.parse(data!.datetimeDay));
+    DateTime showday = DateTime(
+        int.parse(data!.datetimeYear),
+        int.parse(data!.datetimeMonth),
+        int.parse(data!.datetimeDay),
+        int.parse(data!.datetimeHour),
+        int.parse(data!.datetimeMinute));
     return Container(
       width: availableSizeWidth,
-      height: availableSizeHeight * 0.2 * 0.8, // 使う画面サイズ
+      height: availableSizeHeight, // 使う画面サイズ
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10), // 角を10で丸める
         color: Color.fromARGB(100, changeColorSub.red, changeColorSub.green,
             changeColorSub.blue), // サブカラーを不透明度100で設定
         border: Border.all(
-          width: 1, // 線の太さ
+          width: 5, // 線の太さ
           color: Color.fromARGB(50, changeColorMain.red, changeColorMain.green,
               changeColorMain.blue), // メインカラーを不透明度50で設定
         ),
@@ -43,19 +49,38 @@ class Todo extends StatelessWidget {
           // 行(横)に並べる
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            ColorTag(availableSizeHeight, availableSizeWidth * 0.1,
-                int.parse(data!.colorselectnum)), // ジャンルごとにカラータグを割り振る
-            TodoText(DateFormat("HH : mm").format(showday), 12,
-                availableSizeHeight, availableSizeWidth * 0.225), // 期限を出力する
-            VerticalDivider(
-              color: Color.fromARGB(200, changeColorMain.red,
-                  changeColorMain.green, changeColorMain.blue),
-              thickness: 2,
-              indent: availableSizeHeight * 0.025,
-              endIndent: availableSizeHeight * 0.025,
-            ), // 区切り線
-            TodoText(data!.contents, 10, availableSizeHeight,
-                availableSizeWidth * 0.45),
+            Container(
+              width: availableSizeWidth * 0.075,
+              height: availableSizeHeight,
+              child: ColorTag(availableSizeHeight, availableSizeWidth * 0.075,
+                  int.parse(data!.colorselectnum)), // ジャンルごとにカラータグを割り振る
+            ),
+            Container(
+              width: availableSizeWidth * 0.2,
+              height: availableSizeHeight,
+              child: TodoText(
+                  DateFormat("HH : mm").format(showday),
+                  (onMain) ? 6 : 12,
+                  availableSizeHeight,
+                  availableSizeWidth * 0.2), // 期限を出力する
+            ),
+            Container(
+              width: availableSizeWidth * 0.025,
+              height: availableSizeHeight,
+              child: VerticalDivider(
+                color: Color.fromARGB(200, changeColorMain.red,
+                    changeColorMain.green, changeColorMain.blue),
+                thickness: 2,
+                indent: availableSizeHeight * 0.0225,
+                endIndent: availableSizeHeight * 0.025,
+              ), // 区切り線
+            ),
+            Container(
+              width: availableSizeWidth * 0.425,
+              height: availableSizeHeight,
+              child: TodoText(data!.contents, (onMain) ? 5 : 10,
+                  availableSizeHeight, availableSizeWidth * 0.425),
+            ),
           ],
         ),
       ),

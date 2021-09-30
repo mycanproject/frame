@@ -62,14 +62,15 @@ class TodoDate extends StatelessWidget {
             );
           } else {
             return Container(
-              width: availableSizeWidth,
-              height: availableSizeHeight,
+              width: availableSizeWidth * 0.9,
+              height: availableSizeHeight * 0.9,
               child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) => DayBox(
                       snapshot.data![index],
-                      availableSizeHeight,
-                      availableSizeWidth,
+                      availableSizeHeight * 0.9,
+                      availableSizeWidth * 0.9,
                       false,
                       false,
                       snapshot.data!.length)),

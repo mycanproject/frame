@@ -34,7 +34,7 @@ class DayBox extends StatelessWidget {
         int.parse(data!.datetimeMinute));
     return Container(
         width: availableSizeWidth * 0.8,
-        height: availableSizeHeight * 0.5,
+        height: (onMain) ? availableSizeHeight : availableSizeHeight * 0.5,
         decoration: BoxDecoration(
             color: Color.fromARGB(255, changeColorSub.red, changeColorSub.green,
                 changeColorSub.blue),
@@ -60,8 +60,8 @@ class DayBox extends StatelessWidget {
               Container(
                 width: availableSizeWidth,
                 height: (onListView)
-                    ? availableSizeHeight * 0.15
-                    : availableSizeHeight * 0.9,
+                    ? availableSizeHeight * 0.075
+                    : availableSizeHeight * 0.4,
                 child: Text(
                   DateFormat("MM月 dd日").format(showday),
                   style: TextStyle(
@@ -84,9 +84,17 @@ class DayBox extends StatelessWidget {
             if (onListView)
               Container(
                 width: availableSizeWidth,
-                height: availableSizeHeight * 0.8,
-                child: ShowdayTodoListView(showday, availableSizeHeight * 0.5,
-                    availableSizeWidth, data, onMain),
+                height: (onMain)
+                    ? availableSizeHeight * 0.9
+                    : availableSizeHeight * 0.4,
+                child: ShowdayTodoListView(
+                    showday,
+                    (onMain)
+                        ? availableSizeHeight * 0.9
+                        : availableSizeHeight * 0.4,
+                    availableSizeWidth,
+                    data,
+                    onMain),
               ),
           ],
         ));

@@ -26,7 +26,7 @@ class ShowdayTodoListView extends StatelessWidget {
         children: [
           for (int i = 0; i < 3; i++)
             Container(
-              width: availableSizeWidth * 0.8,
+              width: availableSizeWidth * 0.9,
               height: availableSizeHeight * 0.2,
               child: Todo(
                   availableSizeHeight, availableSizeWidth, i, data, onMain),

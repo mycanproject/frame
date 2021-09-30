@@ -15,7 +15,7 @@ class TodoList extends StatelessWidget {
       width: availableSizeWidth,
       height: availableSizeHeight,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           TitleZone('ToDo', availableSizeHeight * 0.2, availableSizeWidth),
           TodoDate(availableSizeHeight * 0.1, availableSizeWidth),

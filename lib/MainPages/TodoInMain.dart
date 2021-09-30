@@ -96,7 +96,7 @@ class TodoInMain extends StatelessWidget {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) => DayBox(
                       snapshot.data![index],
-                      availableSize,
+                      availableSize * 0.8,
                       availableSize,
                       true,
                       true,

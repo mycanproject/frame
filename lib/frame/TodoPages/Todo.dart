@@ -50,28 +50,40 @@ class Todo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Container(
-              width: availableSizeWidth * 0.075,
+              width: (onMain)
+                  ? availableSizeWidth * 0.05
+                  : availableSizeWidth * 0.075,
               height: availableSizeHeight,
-              child: ColorTag(availableSizeHeight, availableSizeWidth * 0.075,
+              child: ColorTag(
+                  availableSizeHeight,
+                  (onMain)
+                      ? availableSizeWidth * 0.05
+                      : availableSizeWidth * 0.075,
                   int.parse(data!.colorselectnum)), // ジャンルごとにカラータグを割り振る
             ),
             Container(
-              width: availableSizeWidth * 0.2,
+              width: (onMain)
+                  ? availableSizeWidth * 0.1
+                  : availableSizeWidth * 0.2,
               height: availableSizeHeight,
               child: TodoText(
                   DateFormat("HH : mm").format(showday),
                   (onMain) ? 6 : 12,
                   availableSizeHeight,
-                  availableSizeWidth * 0.2), // 期限を出力する
+                  (onMain)
+                      ? availableSizeWidth * 0.1
+                      : availableSizeWidth * 0.2), // 期限を出力する
             ),
             Container(
-              width: availableSizeWidth * 0.025,
+              width: (onMain)
+                  ? availableSizeWidth * 0.0125
+                  : availableSizeWidth * 0.025,
               height: availableSizeHeight,
               child: VerticalDivider(
                 color: Color.fromARGB(200, changeColorMain.red,
                     changeColorMain.green, changeColorMain.blue),
                 thickness: 2,
-                indent: availableSizeHeight * 0.0225,
+                indent: availableSizeHeight * 0.025,
                 endIndent: availableSizeHeight * 0.025,
               ), // 区切り線
             ),

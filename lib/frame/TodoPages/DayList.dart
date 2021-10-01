@@ -69,11 +69,23 @@ class DayList extends StatelessWidget {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) => DayBox(
                       snapshot.data![index],
-                      availableSizeHeight,
-                      availableSizeWidth,
+                      (index <= snapshot.data!.length - 2)
+                          ? (snapshot.data![index].datetimeDay !=
+                                  snapshot.data![index + 1].datetimeDay)
+                              ? availableSizeHeight
+                              : 0
+                          : availableSizeHeight,
+                      (index <= snapshot.data!.length - 2)
+                          ? (snapshot.data![index].datetimeDay !=
+                                  snapshot.data![index + 1].datetimeDay)
+                              ? availableSizeWidth
+                              : 0
+                          : availableSizeWidth,
                       true,
                       false,
-                      snapshot.data!.length)),
+                      false,
+                      index,
+                      snapshot.data!)),
             );
           }
         });

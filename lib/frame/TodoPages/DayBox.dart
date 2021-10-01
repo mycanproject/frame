@@ -19,10 +19,12 @@ class DayBox extends StatelessWidget {
   final double availableSizeWidth;
   final bool onListView;
   final bool onMain;
-  final int length;
+  final bool notDay;
+  final int num;
+  final List<TodoDataRow> datas;
 
   DayBox(this.data, this.availableSizeHeight, this.availableSizeWidth,
-      this.onListView, this.onMain, this.length);
+      this.onListView, this.onMain, this.notDay, this.num, this.datas);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,8 @@ class DayBox extends StatelessWidget {
         int.parse(data!.datetimeHour),
         int.parse(data!.datetimeMinute));
     return Container(
-        width: availableSizeWidth * 0.8,
+        width:
+            (onListView) ? availableSizeWidth * 0.8 : availableSizeWidth * 0.2,
         height: (onMain) ? availableSizeHeight : availableSizeHeight * 0.5,
         decoration: BoxDecoration(
             color: Color.fromARGB(255, changeColorSub.red, changeColorSub.green,
@@ -56,9 +59,11 @@ class DayBox extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            if (!onMain)
+            if (!onMain && !notDay)
               Container(
-                width: availableSizeWidth,
+                width: (onListView)
+                    ? availableSizeWidth
+                    : availableSizeWidth * 0.2,
                 height: (onListView)
                     ? availableSizeHeight * 0.075
                     : availableSizeHeight * 0.4,
@@ -81,7 +86,7 @@ class DayBox extends StatelessWidget {
                   textAlign: TextAlign.left,
                 ),
               ),
-            if (onListView)
+            if (onListView && !notDay)
               Container(
                 width: availableSizeWidth,
                 height: (onMain)
@@ -94,7 +99,9 @@ class DayBox extends StatelessWidget {
                         : availableSizeHeight * 0.4,
                     availableSizeWidth,
                     data,
-                    onMain),
+                    onMain,
+                    num,
+                    datas),
               ),
           ],
         ));

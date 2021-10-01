@@ -69,11 +69,23 @@ class TodoDate extends StatelessWidget {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) => DayBox(
                       snapshot.data![index],
-                      availableSizeHeight * 0.9,
-                      availableSizeWidth * 0.9,
+                      (index <= snapshot.data!.length - 2)
+                          ? (snapshot.data![index].datetimeDay !=
+                                  snapshot.data![index + 1].datetimeDay)
+                              ? availableSizeHeight * 0.9
+                              : 0
+                          : availableSizeHeight * 0.9,
+                      (index <= snapshot.data!.length - 2)
+                          ? (snapshot.data![index].datetimeDay !=
+                                  snapshot.data![index + 1].datetimeDay)
+                              ? availableSizeWidth * 0.9
+                              : 0
+                          : availableSizeWidth * 0.9,
                       false,
                       false,
-                      snapshot.data!.length)),
+                      false,
+                      index,
+                      snapshot.data!)),
             );
           }
         });

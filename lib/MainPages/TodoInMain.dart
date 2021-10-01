@@ -96,11 +96,40 @@ class TodoInMain extends StatelessWidget {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) => DayBox(
                       snapshot.data![index],
-                      availableSize * 0.8,
-                      availableSize,
+                      (showday.day ==
+                                  int.parse(
+                                      snapshot.data![index].datetimeDay) &&
+                              showday.month ==
+                                  int.parse(
+                                      snapshot.data![index].datetimeMonth))
+                          ? (snapshot.data![index].datetimeDay !=
+                                  snapshot.data![index + 1].datetimeDay)
+                              ? availableSize * 0.8
+                              : 0
+                          : 0,
+                      (showday.day ==
+                                  int.parse(
+                                      snapshot.data![index].datetimeDay) &&
+                              showday.month ==
+                                  int.parse(
+                                      snapshot.data![index].datetimeMonth))
+                          ? (snapshot.data![index].datetimeDay !=
+                                  snapshot.data![index + 1].datetimeDay)
+                              ? availableSize * 0.8
+                              : 0
+                          : 0,
                       true,
                       true,
-                      snapshot.data!.length)),
+                      (showday.day ==
+                                  int.parse(
+                                      snapshot.data![index].datetimeDay) &&
+                              showday.month ==
+                                  int.parse(
+                                      snapshot.data![index].datetimeMonth))
+                          ? false
+                          : true,
+                      index,
+                      snapshot.data!)),
             );
           }
         });

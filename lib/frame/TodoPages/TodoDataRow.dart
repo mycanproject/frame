@@ -27,10 +27,8 @@ Future<List<TodoDataRow>> getTodoDate() async {
   List<TodoDataRow> list = [];
 
   String csv = await rootBundle.loadString('../frame/assets/todolists.csv');
-  print(csv);
 
-  for (String line in csv.split('¥r')) {
-    print(line);
+  for (String line in csv.split('\r\n')) {
     List rows = line.split(',');
 
     TodoDataRow rowDate = TodoDataRow(
@@ -38,6 +36,5 @@ Future<List<TodoDataRow>> getTodoDate() async {
 
     list.add(rowDate);
   }
-  print(list.length);
   return list;
 }

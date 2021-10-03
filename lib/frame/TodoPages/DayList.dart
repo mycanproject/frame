@@ -8,6 +8,7 @@ import '../SettingPages/ChangeColor.dart';
 import '../SettingPages/ChangeFont.dart';
 import 'DayBox.dart';
 import 'TodoDataRow.dart';
+import '../../Input/NewTodo.dart';
 
 class DayList extends StatelessWidget {
   final double availableSizeHeight;
@@ -16,7 +17,7 @@ class DayList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getTodoDate(),
+        future: getTodoData(),
         builder:
             (BuildContext context, AsyncSnapshot<List<TodoDataRow>> snapshot) {
           if (!snapshot.hasData) {
@@ -63,29 +64,69 @@ class DayList extends StatelessWidget {
             );
           } else {
             return Container(
-              width: availableSizeWidth,
-              height: availableSizeHeight,
+              width: availableSizeWidth * 0.9,
+              height: availableSizeHeight * 0.9,
               child: ListView.builder(
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) => DayBox(
-                      snapshot.data![index],
-                      (index <= snapshot.data!.length - 2)
-                          ? (snapshot.data![index].datetimeDay !=
-                                  snapshot.data![index + 1].datetimeDay)
-                              ? availableSizeHeight
-                              : 0
-                          : availableSizeHeight,
-                      (index <= snapshot.data!.length - 2)
-                          ? (snapshot.data![index].datetimeDay !=
-                                  snapshot.data![index + 1].datetimeDay)
-                              ? availableSizeWidth
-                              : 0
-                          : availableSizeWidth,
-                      true,
-                      false,
-                      false,
-                      index,
-                      snapshot.data!)),
+                  itemCount: snapshot.data!.length + 1,
+                  itemBuilder: (context, index) {
+                    return (index < snapshot.data!.length)
+                        ? DayBox(
+                            snapshot.data![index],
+                            (index < snapshot.data!.length - 1)
+                                ? (snapshot.data![index].datetimeDay !=
+                                        snapshot.data![index + 1].datetimeDay)
+                                    ? availableSizeHeight * 0.9
+                                    : 0
+                                : availableSizeHeight * 0.9,
+                            (index < snapshot.data!.length - 1)
+                                ? (snapshot.data![index].datetimeDay !=
+                                        snapshot.data![index + 1].datetimeDay)
+                                    ? availableSizeWidth * 0.9
+                                    : 0
+                                : availableSizeWidth * 0.9,
+                            true,
+                            false,
+                            false,
+                            (index < snapshot.data!.length - 1)
+                                ? index
+                                : index - 1,
+                            snapshot.data!)
+                        : Container(
+                            width: availableSizeWidth * 0.9,
+                            height: availableSizeHeight * 0.5,
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.circular(10), // 角を10で丸める
+                                color: changeColorMain, // サブカラーを不透明度100で設定
+                                border: Border.all(
+                                  width: 5, // 線の太さ
+                                  color: changeColorSub, // メインカラーを不透明度50で設定
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: shadowColor,
+                                    offset: Offset(0, 3),
+                                    blurRadius: 2,
+                                  )
+                                ]),
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => NewTodo()));
+                              },
+                              child: Text(
+                                "New Todo",
+                                style: TextStyle(
+                                    color: changeColorSub,
+                                    fontSize: 15,
+                                    fontFamily: fontMain,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          );
+                  }),
             );
           }
         });

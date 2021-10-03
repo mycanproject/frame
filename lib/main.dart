@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:framework/MainPages/MainPage.dart';
+import 'package:framework/frame/SettingPages/ChangeColor.dart';
 import '../frame/NewsList/NewsList.dart';
 import '../frame/SettingPages/ChangeColor.dart';
 import '../frame/TodoPages/TodoList.dart';

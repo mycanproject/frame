@@ -21,8 +21,8 @@ class DayTable extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           WeeklyName(availableSizeHeight, availableSizeWidth, weekly),
-          TimetableInMain(availableSizeHeight * 0.85, availableSizeWidth,
-              weekly.toString()),
+          TimetableInMain(
+              availableSizeHeight * 0.85, availableSizeWidth, weekly + 1),
         ],
       ),
     );

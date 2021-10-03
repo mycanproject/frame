@@ -17,7 +17,7 @@ class TodoDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getTodoDate(),
+        future: getTodoData(),
         builder:
             (BuildContext context, AsyncSnapshot<List<TodoDataRow>> snapshot) {
           if (!snapshot.hasData) {
@@ -67,25 +67,27 @@ class TodoDate extends StatelessWidget {
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) => DayBox(
-                      snapshot.data![index],
-                      (index <= snapshot.data!.length - 2)
-                          ? (snapshot.data![index].datetimeDay !=
-                                  snapshot.data![index + 1].datetimeDay)
-                              ? availableSizeHeight * 0.9
-                              : 0
-                          : availableSizeHeight * 0.9,
-                      (index <= snapshot.data!.length - 2)
-                          ? (snapshot.data![index].datetimeDay !=
-                                  snapshot.data![index + 1].datetimeDay)
-                              ? availableSizeWidth * 0.9
-                              : 0
-                          : availableSizeWidth * 0.9,
-                      false,
-                      false,
-                      false,
-                      index,
-                      snapshot.data!)),
+                  itemBuilder: (context, index) {
+                    return DayBox(
+                        snapshot.data![index],
+                        (index < snapshot.data!.length - 1)
+                            ? (snapshot.data![index].datetimeDay !=
+                                    snapshot.data![index + 1].datetimeDay)
+                                ? availableSizeHeight * 0.9
+                                : 0
+                            : availableSizeHeight * 0.9,
+                        (index < snapshot.data!.length - 1)
+                            ? (snapshot.data![index].datetimeDay !=
+                                    snapshot.data![index + 1].datetimeDay)
+                                ? availableSizeWidth * 0.9
+                                : 0
+                            : availableSizeWidth * 0.9,
+                        false,
+                        false,
+                        false,
+                        index,
+                        snapshot.data!);
+                  }),
             );
           }
         });

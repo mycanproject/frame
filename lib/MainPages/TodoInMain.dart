@@ -20,7 +20,7 @@ class TodoInMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getTodoDate(),
+        future: getTodoData(),
         builder:
             (BuildContext context, AsyncSnapshot<List<TodoDataRow>> snapshot) {
           if (!snapshot.hasData) {

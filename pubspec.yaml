@@ -42,6 +42,8 @@ dev_dependencies:
 flutter:
   assets: 
     - ../frame/assets/todolists.csv
+    - ../frame/assets/newslist.csv
+    - ../frame/assets/timetable.csv
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

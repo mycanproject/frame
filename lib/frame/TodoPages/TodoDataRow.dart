@@ -23,7 +23,7 @@ class TodoDataRow {
       this.colorselectnum);
 }
 
-Future<List<TodoDataRow>> getTodoDate() async {
+Future<List<TodoDataRow>> getTodoData() async {
   List<TodoDataRow> list = [];
 
   String csv = await rootBundle.loadString('../frame/assets/todolists.csv');
@@ -31,10 +31,10 @@ Future<List<TodoDataRow>> getTodoDate() async {
   for (String line in csv.split('\r\n')) {
     List rows = line.split(',');
 
-    TodoDataRow rowDate = TodoDataRow(
+    TodoDataRow rowData = TodoDataRow(
         rows[0], rows[1], rows[2], rows[3], rows[4], rows[5], rows[6]);
 
-    list.add(rowDate);
+    list.add(rowData);
   }
   return list;
 }

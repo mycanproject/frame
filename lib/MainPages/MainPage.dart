@@ -66,10 +66,8 @@ class _SliderViewD extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               //行(横)に並べる
               children: <Widget>[
-                TimetableInMain(
-                    availableSizeHeight * 0.7,
-                    availableSizeWidth * 0.4,
-                    showday.weekday.toString()), //時間割の設定
+                TimetableInMain(availableSizeHeight * 0.7,
+                    availableSizeWidth * 0.4, showday.weekday), //時間割の設定
                 Container(
                   width: availableSizeWidth * 0.525,
                   height: availableSizeHeight * 0.75,

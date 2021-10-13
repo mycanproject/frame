@@ -31,7 +31,7 @@ class CalBox extends StatelessWidget {
                 ? Colors.black
                 : Colors.black26,
             fontFamily: fontMain,
-            fontSize: (exactdate.month == monthfirst.month) ? 30 : 15,
+            fontSize: (exactdate.month == monthfirst.month) ? 25 : 15,
             fontWeight: FontWeight.w700,
             shadows: [
               Shadow(

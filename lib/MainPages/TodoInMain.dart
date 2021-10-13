@@ -5,6 +5,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:framework/Input/Todo/InputTodo.dart';
 import '../frame/SettingPages/ChangeColor.dart';
 import '../frame/SettingPages/ChangeFont.dart';
 import '../frame/TodoPages/DayBox.dart';
@@ -20,7 +21,7 @@ class TodoInMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getTodoData(),
+        future: load(),
         builder:
             (BuildContext context, AsyncSnapshot<List<TodoDataRow>> snapshot) {
           if (!snapshot.hasData) {

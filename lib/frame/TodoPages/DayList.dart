@@ -4,11 +4,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:framework/Input/Todo/InputTodo.dart';
 import '../SettingPages/ChangeColor.dart';
 import '../SettingPages/ChangeFont.dart';
 import 'DayBox.dart';
 import 'TodoDataRow.dart';
-import '../../Input/NewTodo.dart';
+import '../../Input/Todo/NewTodo.dart';
 
 class DayList extends StatelessWidget {
   final double availableSizeHeight;
@@ -17,7 +18,7 @@ class DayList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getTodoData(),
+        future: load(),
         builder:
             (BuildContext context, AsyncSnapshot<List<TodoDataRow>> snapshot) {
           if (!snapshot.hasData) {
@@ -42,26 +43,29 @@ class DayList extends StatelessWidget {
               ),
             );
           } else if (snapshot.data!.length == 0) {
-            return Container(
-              width: availableSizeWidth,
-              height: availableSizeHeight,
-              child: Text(
-                "Mission Complete!",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: fontMain,
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700,
-                    shadows: [
-                      Shadow(
-                        color: shadowColor,
-                        offset: Offset(0, 3),
-                        blurRadius: 2,
-                      )
-                    ]),
-                textAlign: TextAlign.center,
+            return Column(children: [
+              Container(
+                width: availableSizeWidth * 0.9,
+                height: availableSizeHeight * 0.5,
+                child: Text(
+                  "Mission Complete!",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: fontMain,
+                      fontSize: 30,
+                      fontWeight: FontWeight.w700,
+                      shadows: [
+                        Shadow(
+                          color: shadowColor,
+                          offset: Offset(0, 3),
+                          blurRadius: 2,
+                        )
+                      ]),
+                  textAlign: TextAlign.center,
+                ),
               ),
-            );
+              NewTodoButton(availableSizeWidth, availableSizeHeight)
+            ]);
           } else {
             return Container(
               width: availableSizeWidth * 0.9,
@@ -87,48 +91,53 @@ class DayList extends StatelessWidget {
                             true,
                             false,
                             false,
-                            (index < snapshot.data!.length - 1)
-                                ? index
-                                : index - 1,
+                            (index == 0) ? index : index - 1,
                             snapshot.data!)
-                        : Container(
-                            width: availableSizeWidth * 0.9,
-                            height: availableSizeHeight * 0.5,
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(10), // 角を10で丸める
-                                color: changeColorMain, // サブカラーを不透明度100で設定
-                                border: Border.all(
-                                  width: 5, // 線の太さ
-                                  color: changeColorSub, // メインカラーを不透明度50で設定
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: shadowColor,
-                                    offset: Offset(0, 3),
-                                    blurRadius: 2,
-                                  )
-                                ]),
-                            child: TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => NewTodo()));
-                              },
-                              child: Text(
-                                "New Todo",
-                                style: TextStyle(
-                                    color: changeColorSub,
-                                    fontSize: 15,
-                                    fontFamily: fontMain,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ),
-                          );
+                        : NewTodoButton(
+                            availableSizeWidth, availableSizeHeight);
                   }),
             );
           }
         });
+  }
+}
+
+class NewTodoButton extends StatelessWidget {
+  final double availableSizeWidth;
+  final double availableSizeHeight;
+  NewTodoButton(this.availableSizeWidth, this.availableSizeHeight);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: availableSizeWidth * 0.9,
+        height: availableSizeHeight * 0.5,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10), // 角を10で丸める
+            color: changeColorMain, // サブカラーを不透明度100で設定
+            border: Border.all(
+              width: 5, // 線の太さ
+              color: changeColorSub, // メインカラーを不透明度50で設定
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: shadowColor,
+                offset: Offset(0, 3),
+                blurRadius: 2,
+              )
+            ]),
+        child: TextButton(
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => NewTodo()));
+          },
+          child: Text(
+            "New Todo",
+            style: TextStyle(
+                color: changeColorSub,
+                fontSize: 15,
+                fontFamily: fontMain,
+                fontWeight: FontWeight.w700),
+          ),
+        ));
   }
 }

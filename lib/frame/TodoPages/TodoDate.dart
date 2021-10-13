@@ -9,6 +9,7 @@ import '../SettingPages/ChangeColor.dart';
 import '../SettingPages/ChangeFont.dart';
 import 'DayBox.dart';
 import 'TodoDataRow.dart';
+import '../../Input/Todo/InputTodo.dart';
 
 class TodoDate extends StatelessWidget {
   final double availableSizeHeight;
@@ -17,7 +18,7 @@ class TodoDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getTodoData(),
+        future: load(),
         builder:
             (BuildContext context, AsyncSnapshot<List<TodoDataRow>> snapshot) {
           if (!snapshot.hasData) {

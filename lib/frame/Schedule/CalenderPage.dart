@@ -28,7 +28,7 @@ class CalenderPageState extends State<CalenderPage> {
       child: PageView.builder(
         controller: PageController(initialPage: 1200),
         itemBuilder: (context, index) {
-          return _SliderViewC(
+          return _sliderViewC(
               availableSizeHeight,
               availableSizeWidth,
               DateTime(day.year + ((index - 1200) ~/ 12),
@@ -42,25 +42,15 @@ class CalenderPageState extends State<CalenderPage> {
   }
 }
 
-class _SliderViewC extends StatelessWidget {
-  // Schedule.dart/CalenderPafeStateから参照
-  final double availableSizeHeight;
-  final double availableSizeWidth;
-  final DateTime showmonth;
-  _SliderViewC(
-      this.availableSizeHeight, this.availableSizeWidth, this.showmonth);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: availableSizeWidth,
-      height: availableSizeHeight,
-      child: Column(
-        children: [
-          ShowMonth(availableSizeHeight * 0.1, availableSizeWidth, showmonth),
-          ShowCalender(
-              availableSizeHeight * 0.9, availableSizeWidth, showmonth),
-        ],
-      ),
-    );
-  }
+Widget _sliderViewC(availableSizeHeight, availableSizeWidth, showmonth) {
+  return Container(
+    width: availableSizeWidth,
+    height: availableSizeHeight,
+    child: Column(
+      children: [
+        showMonth(availableSizeHeight * 0.1, availableSizeWidth, showmonth),
+        showCalender(availableSizeHeight * 0.9, availableSizeWidth, showmonth),
+      ],
+    ),
+  );
 }

@@ -43,29 +43,8 @@ class DayList extends StatelessWidget {
               ),
             );
           } else if (snapshot.data!.length == 0) {
-            return Column(children: [
-              Container(
-                width: availableSizeWidth * 0.9,
-                height: availableSizeHeight * 0.5,
-                child: Text(
-                  "Mission Complete!",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: fontMain,
-                      fontSize: 30,
-                      fontWeight: FontWeight.w700,
-                      shadows: [
-                        Shadow(
-                          color: shadowColor,
-                          offset: Offset(0, 3),
-                          blurRadius: 2,
-                        )
-                      ]),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              NewTodoButton(availableSizeWidth, availableSizeHeight)
-            ]);
+            return Center(
+                child: NewTodoButton(availableSizeWidth, availableSizeHeight));
           } else {
             return Container(
               width: availableSizeWidth * 0.9,
@@ -76,22 +55,30 @@ class DayList extends StatelessWidget {
                     return (index < snapshot.data!.length)
                         ? DayBox(
                             snapshot.data![index],
-                            (index < snapshot.data!.length - 1)
-                                ? (snapshot.data![index].datetimeDay !=
-                                        snapshot.data![index + 1].datetimeDay)
-                                    ? availableSizeHeight * 0.9
-                                    : 0
-                                : availableSizeHeight * 0.9,
-                            (index < snapshot.data!.length - 1)
-                                ? (snapshot.data![index].datetimeDay !=
-                                        snapshot.data![index + 1].datetimeDay)
-                                    ? availableSizeWidth * 0.9
-                                    : 0
-                                : availableSizeWidth * 0.9,
+                            (index == 0)
+                                ? availableSizeHeight * 0.9
+                                : (snapshot.data![index].datetimeMonth ==
+                                            snapshot.data![index - 1]
+                                                .datetimeMonth &&
+                                        snapshot.data![index].datetimeDay ==
+                                            snapshot
+                                                .data![index - 1].datetimeDay)
+                                    ? 0
+                                    : availableSizeHeight * 0.9,
+                            (index == 0)
+                                ? availableSizeWidth * 0.9
+                                : (snapshot.data![index].datetimeMonth ==
+                                            snapshot.data![index - 1]
+                                                .datetimeMonth &&
+                                        snapshot.data![index].datetimeDay ==
+                                            snapshot
+                                                .data![index - 1].datetimeDay)
+                                    ? 0
+                                    : availableSizeWidth * 0.9,
                             true,
                             false,
                             false,
-                            (index == 0) ? index : index - 1,
+                            index,
                             snapshot.data!)
                         : NewTodoButton(
                             availableSizeWidth, availableSizeHeight);

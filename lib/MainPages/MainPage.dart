@@ -18,7 +18,7 @@ class MainPageState extends State<MainPage> {
       child: PageView.builder(
         controller: PageController(initialPage: 1200), //最大スクロール可能数1200
         itemBuilder: (context, index) {
-          return _SliderViewD(
+          return _sliderViewD(
               availableSizeHeight,
               availableSizeWidth,
               day.add(Duration(
@@ -39,52 +39,43 @@ class MainPage extends StatefulWidget {
   MainPageState createState() => MainPageState();
 }
 
-class _SliderViewD extends StatelessWidget {
+Widget _sliderViewD(availableSizeHeight, availableSizeWidth, showday) {
   //Main.dart/MainPageStateから参照
-  final double availableSizeHeight;
-  final double availableSizeWidth; //利用可能な画面サイズ
-  final DateTime showday; //表示する日付
-
-  _SliderViewD(this.availableSizeHeight, this.availableSizeWidth, this.showday);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: availableSizeWidth,
-      height: availableSizeHeight, //画面全体を一つの箱として設定
-      color: Color.fromARGB(255, changeColorSub.red, changeColorSub.green,
-          changeColorSub.blue), //サブカラーを不透明度255で設定
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        //列(縦)に並べる
-        children: <Widget>[
-          Date(availableSizeHeight * 0.2, showday), //表示する日付の設定
-          Container(
-            width: availableSizeWidth,
-            height: availableSizeHeight * 0.8,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              //行(横)に並べる
-              children: <Widget>[
-                TimetableInMain(availableSizeHeight * 0.7,
-                    availableSizeWidth * 0.4, showday.weekday), //時間割の設定
-                Container(
-                  width: availableSizeWidth * 0.525,
-                  height: availableSizeHeight * 0.75,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //列(縦)の設定
-                    children: <Widget>[
-                      NewsInMain(availableSizeHeight * 0.35), //お知らせの設定
-                      TodoInMain(availableSizeHeight * 0.35, showday), //ToDoの設定
-                    ],
-                  ),
+  return Container(
+    width: availableSizeWidth,
+    height: availableSizeHeight, //画面全体を一つの箱として設定
+    color: Color.fromARGB(255, changeColorSub.red, changeColorSub.green,
+        changeColorSub.blue), //サブカラーを不透明度255で設定
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      //列(縦)に並べる
+      children: <Widget>[
+        date(availableSizeHeight * 0.2, showday), //表示する日付の設定
+        Container(
+          width: availableSizeWidth,
+          height: availableSizeHeight * 0.8,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            //行(横)に並べる
+            children: <Widget>[
+              timetableInMain(availableSizeHeight * 0.7,
+                  availableSizeWidth * 0.4, showday.weekday), //時間割の設定
+              Container(
+                width: availableSizeWidth * 0.525,
+                height: availableSizeHeight * 0.75,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //列(縦)の設定
+                  children: <Widget>[
+                    newsInMain(availableSizeHeight * 0.35), //お知らせの設定
+                    TodoInMain(availableSizeHeight * 0.35, showday), //ToDoの設定
+                  ],
                 ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
+              ),
+            ],
+          ),
+        )
+      ],
+    ),
+  );
 }

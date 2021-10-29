@@ -10,33 +10,21 @@ import '../SettingPages/ChangeColor.dart';
 import '../SettingPages/ChangeFont.dart';
 import '../../MainPages/NowDay.dart';
 
-class News extends StatelessWidget {
-  final NewsDataRow news;
-  final double availableSizeHeight;
-  final double availableSizeWidth;
-
-  News(this.news, this.availableSizeHeight, this.availableSizeWidth);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: availableSizeWidth,
-      height: availableSizeHeight * 0.2, //使う箱のサイズ
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), // 角を10で丸める
-          color: Color.fromARGB(100, changeColorSub.red, changeColorSub.green,
-              changeColorSub.blue), // サブカラーを不透明度100で設定
-          border: Border.all(
-            width: 1, // 線の太さ
-            color: Color.fromARGB(
-                50,
-                changeColorMain.red,
-                changeColorMain.green,
-                changeColorMain.blue), // メインカラーを不透明度50で設定
-          )),
-      child: newsPattern(news),
-    );
-  }
+Widget news(news, availableSizeHeight, availableSizeWidth) {
+  return Container(
+    width: availableSizeWidth,
+    height: availableSizeHeight * 0.2, //使う箱のサイズ
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10), // 角を10で丸める
+        color: Color.fromARGB(100, changeColorSub.red, changeColorSub.green,
+            changeColorSub.blue), // サブカラーを不透明度100で設定
+        border: Border.all(
+          width: 1, // 線の太さ
+          color: Color.fromARGB(50, changeColorMain.red, changeColorMain.green,
+              changeColorMain.blue), // メインカラーを不透明度50で設定
+        )),
+    child: newsPattern(news),
+  );
 }
 
 Widget newsPattern(NewsDataRow news) {

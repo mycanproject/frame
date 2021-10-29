@@ -26,12 +26,12 @@ class NewsListState extends State<NewsList> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          TitleZone(
+          titleZone(
               'News', availableSizeHeight * 0.2, availableSizeWidth), //上部のデザイン
           Container(
             width: availableSizeWidth,
             height: availableSizeHeight * 0.7,
-            child: NewsListView(availableSizeHeight * 0.7, availableSizeWidth),
+            child: newsListView(availableSizeHeight * 0.7, availableSizeWidth),
           ),
         ],
       ),

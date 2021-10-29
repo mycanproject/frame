@@ -10,70 +10,63 @@ import '../SettingPages/ChangeFont.dart';
 import 'News.dart';
 import 'NewsDataRow.dart';
 
-class NewsListView extends StatelessWidget {
-  final double availableSizeHeight;
-  final double availableSizeWidth;
-
-  NewsListView(this.availableSizeHeight, this.availableSizeWidth);
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: getNewsData(),
-        builder:
-            (BuildContext context, AsyncSnapshot<List<NewsDataRow>> snapshot) {
-          if (!snapshot.hasData) {
-            return Container(
-              width: availableSizeWidth,
-              height: availableSizeHeight,
-              child: Text(
-                "",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: fontMain,
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700,
-                    shadows: [
-                      Shadow(
-                        color: shadowColor,
-                        offset: Offset(0, 3),
-                        blurRadius: 2,
-                      )
-                    ]),
-              ),
-            );
-          } else if (snapshot.data!.length == 0) {
-            return Container(
-              width: availableSizeWidth,
-              height: availableSizeHeight,
-              child: Text(
-                "None",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: fontMain,
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700,
-                    shadows: [
-                      Shadow(
-                        color: shadowColor,
-                        offset: Offset(0, 3),
-                        blurRadius: 2,
-                      )
-                    ]),
-              ),
-            );
-          } else {
-            return Container(
-              width: availableSizeWidth * 0.9,
-              height: availableSizeHeight * 0.9,
-              child: ListView.builder(
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) => News(snapshot.data![index],
-                      availableSizeHeight, availableSizeWidth)),
-            );
-          }
-        });
-  }
+Widget newsListView(availableSizeHeight, availableSizeWidth) {
+  return FutureBuilder(
+      future: getNewsData(),
+      builder:
+          (BuildContext context, AsyncSnapshot<List<NewsDataRow>> snapshot) {
+        if (!snapshot.hasData) {
+          return Container(
+            width: availableSizeWidth,
+            height: availableSizeHeight,
+            child: Text(
+              "",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: fontMain,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                  shadows: [
+                    Shadow(
+                      color: shadowColor,
+                      offset: Offset(0, 3),
+                      blurRadius: 2,
+                    )
+                  ]),
+            ),
+          );
+        } else if (snapshot.data!.length == 0) {
+          return Container(
+            width: availableSizeWidth,
+            height: availableSizeHeight,
+            child: Text(
+              "None",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: fontMain,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w700,
+                  shadows: [
+                    Shadow(
+                      color: shadowColor,
+                      offset: Offset(0, 3),
+                      blurRadius: 2,
+                    )
+                  ]),
+            ),
+          );
+        } else {
+          return Container(
+            width: availableSizeWidth * 0.9,
+            height: availableSizeHeight * 0.9,
+            child: ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) => news(snapshot.data![index],
+                    availableSizeHeight, availableSizeWidth)),
+          );
+        }
+      });
+}
   /*Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(
@@ -85,4 +78,4 @@ class NewsListView extends StatelessWidget {
     ));
   }
 }*/
-}
+

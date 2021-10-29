@@ -28,38 +28,18 @@ class ShowdayTodoListView extends StatelessWidget {
         children: [
           for (int i = num;
               i < datas.length &&
-                  (datas[(i == 0) ? i : i - 1].datetimeDay ==
-                          data!.datetimeDay ||
+                  ((datas[i].datetimeMonth == data!.datetimeMonth &&
+                          datas[i].datetimeDay == data!.datetimeDay) ||
                       i == num);
               i++)
             Container(
               width: availableSizeWidth * 0.9,
-              height: availableSizeHeight * 0.2,
-              child: Todo(availableSizeHeight, availableSizeWidth, i,
-                  datas[(i == 0) ? i : i - 1], onMain),
+              height: availableSizeHeight * 0.3,
+              child: Todo(
+                  availableSizeHeight, availableSizeWidth, i, datas[i], onMain),
             )
         ],
       ),
     );
   }
-  /*
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          for (int i = num;
-              datas[(i == 0) ? i : i - 1].datetimeDay == data!.datetimeDay ||
-                  i == num;
-              i++)
-            Container(
-              width: availableSizeWidth * 0.9,
-              height: availableSizeHeight * 0.2,
-              child: Todo(availableSizeHeight, availableSizeWidth, i,
-                  datas[(i == 0) ? i : i - 1], onMain),
-            )
-        ],
-      ),
-    );
-  }
-  */
 }

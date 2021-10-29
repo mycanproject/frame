@@ -14,8 +14,8 @@ class TimeTable extends StatelessWidget {
       height: availableSizeHeight,
       child: Column(
         children: [
-          TitleZone('TimeTable', availableSizeHeight * 0.2, availableSizeWidth),
-          WeeklyTable(availableSizeHeight * 0.8, availableSizeWidth * 0.8)
+          titleZone('TimeTable', availableSizeHeight * 0.2, availableSizeWidth),
+          weeklyTable(availableSizeHeight * 0.8, availableSizeWidth * 0.8)
         ],
       ),
     );

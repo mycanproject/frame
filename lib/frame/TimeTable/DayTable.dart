@@ -5,26 +5,20 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:framework/MainPages/TimetableInMain.dart';
-import 'WeeklyName.dart';
+import 'ColumnAndRow.dart';
+import 'Weeks.dart';
 
-class DayTable extends StatelessWidget {
-  final double availableSizeHeight;
-  final double availableSizeWidth;
-  final int weekly;
-  DayTable(this.availableSizeHeight, this.availableSizeWidth, this.weekly);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: availableSizeWidth * 0.15,
-      height: availableSizeHeight,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          WeeklyName(availableSizeHeight, availableSizeWidth, weekly),
-          TimetableInMain(
-              availableSizeHeight * 0.85, availableSizeWidth, weekly + 1),
-        ],
-      ),
-    );
-  }
+Widget dayTable(availableSizeHeight, availableSizeWidth, weekly) {
+  return Container(
+    width: availableSizeWidth * 0.15,
+    height: availableSizeHeight,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        columnAndRow(availableSizeHeight, availableSizeWidth, weeks[weekly]),
+        timetableInMain(
+            availableSizeHeight * 0.85, availableSizeWidth, weekly + 1),
+      ],
+    ),
+  );
 }

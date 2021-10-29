@@ -15,7 +15,7 @@ class Schedule extends StatelessWidget {
       height: availableSizeHeight,
       child: Column(
         children: [
-          TitleZone("Schedule", availableSizeHeight * 0.2, availableSizeWidth),
+          titleZone("Schedule", availableSizeHeight * 0.2, availableSizeWidth),
           CalenderPage(availableSizeHeight * 0.8, availableSizeWidth * 0.9),
         ],
       ),

@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 //import 'indicator.dart';
 
 class PieData extends StatefulWidget {
+  double value;
+  PieData(this.value);
   @override
-  State<StatefulWidget> createState() => PieDataState();
+  State<StatefulWidget> createState() => PieDataState(value);
 }
 
 class PieDataState extends State {
   int touchedIndex = -1;
+  double value;
+
+  PieDataState(this.value);
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +37,10 @@ class PieDataState extends State {
         ),
         sectionsSpace: 0,
         centerSpaceRadius: 20,
-        sections: showingSections()));
+        sections: showingSections(value)));
   }
 
-  List<PieChartSectionData> showingSections() {
+  List<PieChartSectionData> showingSections(value) {
     return List.generate(2, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 0.0 : 0.0;
@@ -44,7 +49,7 @@ class PieDataState extends State {
         case 0:
           return PieChartSectionData(
             color: const Color(0xff0293ee),
-            value: 70,
+            value: value,
             //title: '70%',
             radius: radius,
             titleStyle: TextStyle(
@@ -55,7 +60,7 @@ class PieDataState extends State {
         case 1:
           return PieChartSectionData(
             color: const Color(0x00ffffff),
-            value: 30,
+            value: 100.toDouble() - value,
             title: '30%',
             radius: radius,
             titleStyle: TextStyle(

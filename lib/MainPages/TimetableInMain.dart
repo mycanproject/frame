@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import '../frame/TimeTable/Subject.dart';
 import '../frame/SettingPages/ChangeColor.dart';
 import '../frame/SettingPages/ChangeFont.dart';
+import '../frame/Subject/SubjectData.dart';
 
 Widget timetableInMain(availableSizeHeight, availableSizeWidth, showWeekly) {
   return Center(
@@ -99,7 +100,10 @@ Widget subjectBox(period, boxsize, showWeekly) {
               ],
             ),
             child: TextButton(
-                onPressed: () {}, //テキストボタンの設定
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SubjectData()));
+                }, //テキストボタンの設定
                 child:
                     periodSubject(period, boxsize, showWeekly - 1, snapshot)),
           );

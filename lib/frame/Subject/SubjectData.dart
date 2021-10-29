@@ -49,9 +49,9 @@ class SubjectData extends StatelessWidget {
                           child: RichText(
                             text: TextSpan(
                                 style: TextStyle(
-                                  color: Colors.black,
-                                  //decoration: TextDecoration.underline,
-                                ),
+                                    color: Colors.black, fontFamily: fontMain
+                                    //decoration: TextDecoration.underline,
+                                    ),
                                 children: [
                                   TextSpan(
                                       text: '教科名 ',
@@ -68,7 +68,6 @@ class SubjectData extends StatelessWidget {
                                             color: Color.fromARGB(255, 0, 0, 0),
                                           )
                                         ],
-                                        fontFamily: fontMain,
                                         fontSize: availableSizeHeight * 0.1,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -89,6 +88,7 @@ class SubjectData extends StatelessWidget {
                                   TextSpan(
                                       text: '単位数 ',
                                       style: TextStyle(
+                                          fontFamily: fontMain,
                                           fontSize:
                                               availableSizeHeight * 0.03)),
                                   TextSpan(
@@ -102,7 +102,6 @@ class SubjectData extends StatelessWidget {
                                                   Color.fromARGB(255, 0, 0, 0),
                                             )
                                           ],
-                                          fontFamily: fontMain,
                                           fontWeight: FontWeight.bold,
                                           fontSize: availableSizeHeight * 0.1,
                                           color: Colors.red)),
@@ -114,90 +113,10 @@ class SubjectData extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FloatingActionButton(
-                              onPressed: () {},
-                              backgroundColor: Colors.blue,
-                              child: Text(
-                                '0',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: availableSizeHeight * 0.03),
-                              ),
-                            ),
-                            Text(
-                              '出席',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: availableSizeHeight * 0.02),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FloatingActionButton(
-                              onPressed: () {},
-                              backgroundColor: Colors.blue,
-                              child: Text(
-                                '1',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: availableSizeHeight * 0.03),
-                              ),
-                            ),
-                            Text(
-                              '欠席',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: availableSizeHeight * 0.02),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FloatingActionButton(
-                              onPressed: () {},
-                              backgroundColor: Colors.blue,
-                              child: Text(
-                                '2',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: availableSizeHeight * 0.03),
-                              ),
-                            ),
-                            Text(
-                              '遅刻・早退',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: availableSizeHeight * 0.02),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FloatingActionButton(
-                              onPressed: () {},
-                              backgroundColor: Colors.blue,
-                              child: Text(
-                                '3',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: availableSizeHeight * 0.03),
-                              ),
-                            ),
-                            Text(
-                              '休講',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: availableSizeHeight * 0.02),
-                            ),
-                          ],
-                        )
+                        attendanceButton("0", "出席", availableSizeHeight),
+                        attendanceButton("1", "欠席", availableSizeHeight),
+                        attendanceButton("2", "遅刻・早退", availableSizeHeight),
+                        attendanceButton("3", "休校", availableSizeHeight),
                       ],
                     ),
                   )
@@ -210,129 +129,12 @@ class SubjectData extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white)),
-                      width: availableSizeWidth * 0.9,
-                      height: availableSizeHeight * 0.12,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            width: availableSizeWidth * 0.6,
-                            height: availableSizeHeight * 0.10,
-                            child: Column(
-                              children: [
-                                Container(
-                                  width: availableSizeWidth * 0.5,
-                                  height: availableSizeHeight * 0.03,
-                                  child: Text('Attendance Rate'),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: availableSizeWidth * 0.9,
-                                  height: availableSizeHeight * 0.07,
-                                  child: Text(
-                                    '８／１２',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: availableSizeHeight * 0.05),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(4),
-                            width: availableSizeWidth * 0.23,
-                            height: availableSizeHeight * 0.11,
-                            child: PieData(),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white)),
-                      width: availableSizeWidth * 0.9,
-                      height: availableSizeHeight * 0.12,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            width: availableSizeWidth * 0.6,
-                            height: availableSizeHeight * 0.10,
-                            child: Column(
-                              children: [
-                                Container(
-                                  width: availableSizeWidth * 0.5,
-                                  height: availableSizeHeight * 0.03,
-                                  child: Text('Attendance Rate'),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: availableSizeWidth * 0.9,
-                                  height: availableSizeHeight * 0.07,
-                                  child: Text(
-                                    '８／１２',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: availableSizeHeight * 0.05),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(4),
-                            width: availableSizeWidth * 0.23,
-                            height: availableSizeHeight * 0.11,
-                            child: PieData(),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white)),
-                      width: availableSizeWidth * 0.9,
-                      height: availableSizeHeight * 0.12,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            width: availableSizeWidth * 0.6,
-                            height: availableSizeHeight * 0.10,
-                            child: Column(
-                              children: [
-                                Container(
-                                  width: availableSizeWidth * 0.5,
-                                  height: availableSizeHeight * 0.03,
-                                  child: Text('Attendance Rate'),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: availableSizeWidth * 0.9,
-                                  height: availableSizeHeight * 0.07,
-                                  child: Text(
-                                    '８／１２',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: availableSizeHeight * 0.05),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(4),
-                            width: availableSizeWidth * 0.23,
-                            height: availableSizeHeight * 0.11,
-                            child: PieData(),
-                          )
-                        ],
-                      ),
-                    ),
+                    rate(1, 12, "Attendance Rate", availableSizeWidth,
+                        availableSizeHeight),
+                    rate(5, 12, "Attendance Rate", availableSizeWidth,
+                        availableSizeHeight),
+                    rate(8, 12, "Attendance Rate", availableSizeWidth,
+                        availableSizeHeight),
                   ],
                 )),
             Container(
@@ -344,4 +146,69 @@ class SubjectData extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget attendanceButton(data, name, availableSizeHeight) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.blue,
+        child: Text(
+          data,
+          style: TextStyle(
+              color: Colors.white, fontSize: availableSizeHeight * 0.03),
+        ),
+      ),
+      Text(
+        name,
+        style: TextStyle(
+            color: Colors.black, fontSize: availableSizeHeight * 0.02),
+      ),
+    ],
+  );
+}
+
+Widget rate(data, maxdata, name, availableSizeWidth, availableSizeHeight) {
+  return Container(
+    decoration: BoxDecoration(border: Border.all(color: Colors.white)),
+    width: availableSizeWidth * 0.9,
+    height: availableSizeHeight * 0.12,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Container(
+          width: availableSizeWidth * 0.6,
+          height: availableSizeHeight * 0.10,
+          child: Column(
+            children: [
+              Container(
+                width: availableSizeWidth * 0.5,
+                height: availableSizeHeight * 0.03,
+                child: Text(name),
+              ),
+              Container(
+                alignment: Alignment.center,
+                width: availableSizeWidth * 0.9,
+                height: availableSizeHeight * 0.07,
+                child: Text(
+                  data.toString() + '／' + maxdata.toString(),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: availableSizeHeight * 0.05),
+                ),
+              )
+            ],
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.all(4),
+          width: availableSizeWidth * 0.23,
+          height: availableSizeHeight * 0.11,
+          child: PieData(data / maxdata * 100),
+        )
+      ],
+    ),
+  );
 }

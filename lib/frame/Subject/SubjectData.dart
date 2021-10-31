@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:framework/frame/SettingPages/ChangeFont.dart';
 import 'package:framework/frame/Subject/PieData.dart';
 
+String Sub = "国語";
+int tani = 2;
+
 class SubjectData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,6 @@ class SubjectData extends StatelessWidget {
           );
         },
       ),
-      //actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))],
     );
     final double availableSizeHeight =
         MediaQuery.of(context).size.height - appBar.preferredSize.height;
@@ -59,7 +61,7 @@ class SubjectData extends StatelessWidget {
                                           fontSize:
                                               availableSizeHeight * 0.03)),
                                   TextSpan(
-                                    text: '国語',
+                                    text: Sub,
                                     style: TextStyle(
                                         shadows: <Shadow>[
                                           Shadow(
@@ -92,7 +94,7 @@ class SubjectData extends StatelessWidget {
                                           fontSize:
                                               availableSizeHeight * 0.03)),
                                   TextSpan(
-                                      text: '2',
+                                      text: tani.toString(),
                                       style: TextStyle(
                                           shadows: <Shadow>[
                                             Shadow(
@@ -113,10 +115,10 @@ class SubjectData extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        attendanceButton("0", "出席", availableSizeHeight),
-                        attendanceButton("1", "欠席", availableSizeHeight),
-                        attendanceButton("2", "遅刻・早退", availableSizeHeight),
-                        attendanceButton("3", "休校", availableSizeHeight),
+                        attendanceButton1(),
+                        attendanceButton2(),
+                        attendanceButton3(),
+                        attendanceButton4(),
                       ],
                     ),
                   )
@@ -148,26 +150,160 @@ class SubjectData extends StatelessWidget {
   }
 }
 
-Widget attendanceButton(data, name, availableSizeHeight) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.blue,
-        child: Text(
-          data,
-          style: TextStyle(
-              color: Colors.white, fontSize: availableSizeHeight * 0.03),
+class attendanceButton1 extends StatefulWidget {
+  @override
+  _attendanceButtonState1 createState() => _attendanceButtonState1();
+}
+
+class _attendanceButtonState1 extends State<attendanceButton1> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      if (_counter < 15) _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final double availableSizeHeight = MediaQuery.of(context).size.height;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        FloatingActionButton(
+          backgroundColor: Colors.blue,
+          child: Text(
+            "$_counter",
+            style: TextStyle(
+                color: Colors.white, fontSize: availableSizeHeight * 0.03),
+          ),
+          onPressed: _incrementCounter,
         ),
-      ),
-      Text(
-        name,
-        style: TextStyle(
-            color: Colors.black, fontSize: availableSizeHeight * 0.02),
-      ),
-    ],
-  );
+        Text(
+          '出席',
+          style: TextStyle(
+              color: Colors.black, fontSize: availableSizeHeight * 0.02),
+        ),
+      ],
+    );
+  }
+}
+
+class attendanceButton2 extends StatefulWidget {
+  @override
+  _attendanceButtonState2 createState() => _attendanceButtonState2();
+}
+
+class _attendanceButtonState2 extends State<attendanceButton2> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      if (_counter < 15) _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final double availableSizeHeight = MediaQuery.of(context).size.height;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        FloatingActionButton(
+          backgroundColor: Colors.blue,
+          child: Text(
+            "$_counter",
+            style: TextStyle(
+                color: Colors.white, fontSize: availableSizeHeight * 0.03),
+          ),
+          onPressed: _incrementCounter,
+        ),
+        Text(
+          '遅刻・早退',
+          style: TextStyle(
+              color: Colors.black, fontSize: availableSizeHeight * 0.02),
+        ),
+      ],
+    );
+  }
+}
+
+class attendanceButton3 extends StatefulWidget {
+  @override
+  _attendanceButtonState3 createState() => _attendanceButtonState3();
+}
+
+class _attendanceButtonState3 extends State<attendanceButton3> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      if (_counter < 15) _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final double availableSizeHeight = MediaQuery.of(context).size.height;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        FloatingActionButton(
+          backgroundColor: Colors.blue,
+          child: Text(
+            "$_counter",
+            style: TextStyle(
+                color: Colors.white, fontSize: availableSizeHeight * 0.03),
+          ),
+          onPressed: _incrementCounter,
+        ),
+        Text(
+          '欠課',
+          style: TextStyle(
+              color: Colors.black, fontSize: availableSizeHeight * 0.02),
+        ),
+      ],
+    );
+  }
+}
+
+class attendanceButton4 extends StatefulWidget {
+  @override
+  _attendanceButtonState4 createState() => _attendanceButtonState4();
+}
+
+class _attendanceButtonState4 extends State<attendanceButton4> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      if (_counter < 15) _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final double availableSizeHeight = MediaQuery.of(context).size.height;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        FloatingActionButton(
+          backgroundColor: Colors.blue,
+          child: Text(
+            "$_counter",
+            style: TextStyle(
+                color: Colors.white, fontSize: availableSizeHeight * 0.03),
+          ),
+          onPressed: _incrementCounter,
+        ),
+        Text(
+          '休講',
+          style: TextStyle(
+              color: Colors.black, fontSize: availableSizeHeight * 0.02),
+        ),
+      ],
+    );
+  }
 }
 
 Widget rate(data, maxdata, name, availableSizeWidth, availableSizeHeight) {

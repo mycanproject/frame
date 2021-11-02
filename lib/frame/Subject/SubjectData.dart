@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:framework/frame/SettingPages/ChangeFont.dart';
 import 'package:framework/frame/Subject/PieData.dart';
 
-String Sub = "国語";
+String sub = "国語";
 int tani = 2;
 
 class SubjectData extends StatelessWidget {
@@ -61,7 +61,7 @@ class SubjectData extends StatelessWidget {
                                           fontSize:
                                               availableSizeHeight * 0.03)),
                                   TextSpan(
-                                    text: Sub,
+                                    text: sub,
                                     style: TextStyle(
                                         shadows: <Shadow>[
                                           Shadow(
@@ -115,10 +115,10 @@ class SubjectData extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        attendanceButton1(),
-                        attendanceButton2(),
-                        attendanceButton3(),
-                        attendanceButton4(),
+                        AttendanceButton1(),
+                        AttendanceButton2(),
+                        AttendanceButton3(),
+                        AttendanceButton4(),
                       ],
                     ),
                   )
@@ -150,12 +150,12 @@ class SubjectData extends StatelessWidget {
   }
 }
 
-class attendanceButton1 extends StatefulWidget {
+class AttendanceButton1 extends StatefulWidget {
   @override
-  _attendanceButtonState1 createState() => _attendanceButtonState1();
+  _AttendanceButtonState1 createState() => _AttendanceButtonState1();
 }
 
-class _attendanceButtonState1 extends State<attendanceButton1> {
+class _AttendanceButtonState1 extends State<AttendanceButton1> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -189,12 +189,12 @@ class _attendanceButtonState1 extends State<attendanceButton1> {
   }
 }
 
-class attendanceButton2 extends StatefulWidget {
+class AttendanceButton2 extends StatefulWidget {
   @override
-  _attendanceButtonState2 createState() => _attendanceButtonState2();
+  _AttendanceButtonState2 createState() => _AttendanceButtonState2();
 }
 
-class _attendanceButtonState2 extends State<attendanceButton2> {
+class _AttendanceButtonState2 extends State<AttendanceButton2> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -228,12 +228,12 @@ class _attendanceButtonState2 extends State<attendanceButton2> {
   }
 }
 
-class attendanceButton3 extends StatefulWidget {
+class AttendanceButton3 extends StatefulWidget {
   @override
-  _attendanceButtonState3 createState() => _attendanceButtonState3();
+  _AttendanceButtonState3 createState() => _AttendanceButtonState3();
 }
 
-class _attendanceButtonState3 extends State<attendanceButton3> {
+class _AttendanceButtonState3 extends State<AttendanceButton3> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -267,12 +267,12 @@ class _attendanceButtonState3 extends State<attendanceButton3> {
   }
 }
 
-class attendanceButton4 extends StatefulWidget {
+class AttendanceButton4 extends StatefulWidget {
   @override
-  _attendanceButtonState4 createState() => _attendanceButtonState4();
+  _AttendanceButtonState4 createState() => _AttendanceButtonState4();
 }
 
-class _attendanceButtonState4 extends State<attendanceButton4> {
+class _AttendanceButtonState4 extends State<AttendanceButton4> {
   int _counter = 0;
 
   void _incrementCounter() {

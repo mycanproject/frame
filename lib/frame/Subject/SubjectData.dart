@@ -1,161 +1,124 @@
 import 'package:flutter/material.dart';
 import 'package:framework/frame/SettingPages/ChangeFont.dart';
 import 'package:framework/frame/Subject/PieData.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-String sub = "国語";
+// ignore: non_constant_identifier_names
+String Sub = "国語";
 int tani = 2;
 
 class SubjectData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final appBar = AppBar(
-      backgroundColor: const Color(0xffc3eff1),
-      elevation: 0.0,
-      leading: IconButton(
-        icon: Icon(
-          Icons.arrow_back_outlined,
-          size: 40,
-        ),
-        onPressed: () {
-          Navigator.pop(
-            context,
-          );
-        },
-      ),
-    );
-    final double availableSizeHeight =
-        MediaQuery.of(context).size.height - appBar.preferredSize.height;
-    final double availableSizeWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: appBar,
-      body: Container(
-        width: availableSizeWidth,
-        height: availableSizeHeight,
-        color: Color(
-            0xffc3eff1) /*Color.fromARGB(
-            255, changeColorSub.red, changeColorSub.green, changeColorSub.blue)*/
-        ,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              width: availableSizeWidth,
-              height: availableSizeHeight * 0.45,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                      width: availableSizeWidth,
-                      height: availableSizeHeight * 0.13,
-                      child: Container(
-                          alignment: Alignment.center,
-                          child: RichText(
-                            text: TextSpan(
-                                style: TextStyle(
-                                    color: Colors.black, fontFamily: fontMain
-                                    //decoration: TextDecoration.underline,
-                                    ),
-                                children: [
-                                  TextSpan(
-                                      text: '教科名 ',
-                                      style: TextStyle(
-                                          fontSize:
-                                              availableSizeHeight * 0.03)),
-                                  TextSpan(
-                                    text: sub,
-                                    style: TextStyle(
-                                        shadows: <Shadow>[
-                                          Shadow(
-                                            offset: Offset(2.0, 2.0),
-                                            blurRadius: 1.0,
-                                            color: Color.fromARGB(255, 0, 0, 0),
-                                          )
-                                        ],
-                                        fontSize: availableSizeHeight * 0.1,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ]),
-                          ))),
-                  Container(
-                      width: availableSizeWidth,
-                      height: availableSizeHeight * 0.13,
-                      child: Container(
-                          alignment: Alignment.center,
-                          child: RichText(
-                            text: TextSpan(
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  //decoration: TextDecoration.underline,
+      backgroundColor: Colors.yellow,
+      body: SafeArea(
+          child: Column(
+        children: <Widget>[
+          Container(
+            height: 6.h,
+          ),
+          Container(
+              height: 9.h,
+              child: Container(
+                  alignment: Alignment.center,
+                  child: RichText(
+                    text: TextSpan(
+                        style:
+                            TextStyle(color: Colors.black, fontFamily: fontMain
+                                //decoration: TextDecoration.underline,
                                 ),
-                                children: [
-                                  TextSpan(
-                                      text: '単位数 ',
-                                      style: TextStyle(
-                                          fontFamily: fontMain,
-                                          fontSize:
-                                              availableSizeHeight * 0.03)),
-                                  TextSpan(
-                                      text: tani.toString(),
-                                      style: TextStyle(
-                                          shadows: <Shadow>[
-                                            Shadow(
-                                              offset: Offset(2.0, 2.0),
-                                              blurRadius: 1.0,
-                                              color:
-                                                  Color.fromARGB(255, 0, 0, 0),
-                                            )
-                                          ],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: availableSizeHeight * 0.1,
-                                          color: Colors.red)),
-                                ]),
-                          ))),
-                  Container(
-                    width: availableSizeWidth,
-                    height: availableSizeHeight * 0.19,
-                    child: Row(
+                        children: [
+                          TextSpan(
+                            text: '教科名 ',
+                            style: TextStyle(fontSize: 7.sp),
+                          ),
+                          TextSpan(
+                            text: Sub,
+                            style: TextStyle(shadows: <Shadow>[
+                              Shadow(
+                                offset: Offset(2.0, 2.0),
+                                blurRadius: 1.0,
+                                color: Color.fromARGB(255, 0, 0, 0),
+                              )
+                            ], fontSize: 15.sp, fontWeight: FontWeight.bold),
+                          ),
+                        ]),
+                  ))),
+          Container(
+              height: 9.h,
+              child: Container(
+                  alignment: Alignment.center,
+                  child: RichText(
+                    text: TextSpan(
+                        style: TextStyle(
+                          color: Colors.black,
+                          //decoration: TextDecoration.underline,
+                        ),
+                        children: [
+                          TextSpan(
+                              text: '単位数 ',
+                              style: TextStyle(
+                                  fontFamily: fontMain, fontSize: 7.sp)),
+                          TextSpan(
+                              text: tani.toString(),
+                              style: TextStyle(
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      offset: Offset(2.0, 2.0),
+                                      blurRadius: 1.0,
+                                      color: Color.fromARGB(255, 0, 0, 0),
+                                    )
+                                  ],
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.sp,
+                                  color: Colors.red)),
+                        ]),
+                  ))),
+          Container(
+            height: 17.h,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                attendanceButton1(),
+                attendanceButton2(),
+                attendanceButton3(),
+                attendanceButton4(),
+              ],
+            ),
+          ),
+          Container(
+            height: 45.h,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                    height: 40.h,
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        AttendanceButton1(),
-                        AttendanceButton2(),
-                        AttendanceButton3(),
-                        AttendanceButton4(),
+                        rate(1, 12, "Attendance Rate"),
+                        rate(5, 12, "Attendance Rate"),
+                        rate(8, 12, "Attendance Rate"),
                       ],
-                    ),
-                  )
-                ],
-              ),
+                    )),
+              ],
             ),
-            Container(
-                width: availableSizeWidth,
-                height: availableSizeHeight * 0.4500,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    rate(1, 12, "Attendance Rate", availableSizeWidth,
-                        availableSizeHeight),
-                    rate(5, 12, "Attendance Rate", availableSizeWidth,
-                        availableSizeHeight),
-                    rate(8, 12, "Attendance Rate", availableSizeWidth,
-                        availableSizeHeight),
-                  ],
-                )),
-            Container(
-              width: availableSizeWidth,
-              height: availableSizeHeight * 0.0403,
-            )
-          ],
-        ),
-      ),
+          ),
+        ],
+      )),
     );
   }
 }
 
-class AttendanceButton1 extends StatefulWidget {
+// ignore: camel_case_types
+class attendanceButton1 extends StatefulWidget {
   @override
-  _AttendanceButtonState1 createState() => _AttendanceButtonState1();
+  _attendanceButtonState1 createState() => _attendanceButtonState1();
 }
 
-class _AttendanceButtonState1 extends State<AttendanceButton1> {
+// ignore: camel_case_types
+class _attendanceButtonState1 extends State<attendanceButton1> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -166,7 +129,6 @@ class _AttendanceButtonState1 extends State<AttendanceButton1> {
 
   @override
   Widget build(BuildContext context) {
-    final double availableSizeHeight = MediaQuery.of(context).size.height;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -174,27 +136,27 @@ class _AttendanceButtonState1 extends State<AttendanceButton1> {
           backgroundColor: Colors.blue,
           child: Text(
             "$_counter",
-            style: TextStyle(
-                color: Colors.white, fontSize: availableSizeHeight * 0.03),
+            style: TextStyle(color: Colors.white, fontSize: 5.sp),
           ),
           onPressed: _incrementCounter,
         ),
         Text(
           '出席',
-          style: TextStyle(
-              color: Colors.black, fontSize: availableSizeHeight * 0.02),
+          style: TextStyle(color: Colors.black, fontSize: 4.sp),
         ),
       ],
     );
   }
 }
 
-class AttendanceButton2 extends StatefulWidget {
+// ignore: camel_case_types
+class attendanceButton2 extends StatefulWidget {
   @override
-  _AttendanceButtonState2 createState() => _AttendanceButtonState2();
+  _attendanceButtonState2 createState() => _attendanceButtonState2();
 }
 
-class _AttendanceButtonState2 extends State<AttendanceButton2> {
+// ignore: camel_case_types
+class _attendanceButtonState2 extends State<attendanceButton2> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -205,7 +167,6 @@ class _AttendanceButtonState2 extends State<AttendanceButton2> {
 
   @override
   Widget build(BuildContext context) {
-    final double availableSizeHeight = MediaQuery.of(context).size.height;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -213,27 +174,27 @@ class _AttendanceButtonState2 extends State<AttendanceButton2> {
           backgroundColor: Colors.blue,
           child: Text(
             "$_counter",
-            style: TextStyle(
-                color: Colors.white, fontSize: availableSizeHeight * 0.03),
+            style: TextStyle(color: Colors.white, fontSize: 5.sp),
           ),
           onPressed: _incrementCounter,
         ),
         Text(
           '遅刻・早退',
-          style: TextStyle(
-              color: Colors.black, fontSize: availableSizeHeight * 0.02),
+          style: TextStyle(color: Colors.black, fontSize: 4.sp),
         ),
       ],
     );
   }
 }
 
-class AttendanceButton3 extends StatefulWidget {
+// ignore: camel_case_types
+class attendanceButton3 extends StatefulWidget {
   @override
-  _AttendanceButtonState3 createState() => _AttendanceButtonState3();
+  _attendanceButtonState3 createState() => _attendanceButtonState3();
 }
 
-class _AttendanceButtonState3 extends State<AttendanceButton3> {
+// ignore: camel_case_types
+class _attendanceButtonState3 extends State<attendanceButton3> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -244,7 +205,6 @@ class _AttendanceButtonState3 extends State<AttendanceButton3> {
 
   @override
   Widget build(BuildContext context) {
-    final double availableSizeHeight = MediaQuery.of(context).size.height;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -252,27 +212,27 @@ class _AttendanceButtonState3 extends State<AttendanceButton3> {
           backgroundColor: Colors.blue,
           child: Text(
             "$_counter",
-            style: TextStyle(
-                color: Colors.white, fontSize: availableSizeHeight * 0.03),
+            style: TextStyle(color: Colors.white, fontSize: 5.sp),
           ),
           onPressed: _incrementCounter,
         ),
         Text(
           '欠課',
-          style: TextStyle(
-              color: Colors.black, fontSize: availableSizeHeight * 0.02),
+          style: TextStyle(color: Colors.black, fontSize: 4.sp),
         ),
       ],
     );
   }
 }
 
-class AttendanceButton4 extends StatefulWidget {
+// ignore: camel_case_types
+class attendanceButton4 extends StatefulWidget {
   @override
-  _AttendanceButtonState4 createState() => _AttendanceButtonState4();
+  _attendanceButtonState4 createState() => _attendanceButtonState4();
 }
 
-class _AttendanceButtonState4 extends State<AttendanceButton4> {
+// ignore: camel_case_types
+class _attendanceButtonState4 extends State<attendanceButton4> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -283,7 +243,6 @@ class _AttendanceButtonState4 extends State<AttendanceButton4> {
 
   @override
   Widget build(BuildContext context) {
-    final double availableSizeHeight = MediaQuery.of(context).size.height;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -291,48 +250,44 @@ class _AttendanceButtonState4 extends State<AttendanceButton4> {
           backgroundColor: Colors.blue,
           child: Text(
             "$_counter",
-            style: TextStyle(
-                color: Colors.white, fontSize: availableSizeHeight * 0.03),
+            style: TextStyle(color: Colors.white, fontSize: 5.sp),
           ),
           onPressed: _incrementCounter,
         ),
         Text(
           '休講',
-          style: TextStyle(
-              color: Colors.black, fontSize: availableSizeHeight * 0.02),
+          style: TextStyle(color: Colors.black, fontSize: 4.sp),
         ),
       ],
     );
   }
 }
 
-Widget rate(data, maxdata, name, availableSizeWidth, availableSizeHeight) {
+Widget rate(data, maxdata, name) {
   return Container(
     decoration: BoxDecoration(border: Border.all(color: Colors.white)),
-    width: availableSizeWidth * 0.9,
-    height: availableSizeHeight * 0.12,
+    width: 95.w,
+    height: 10.h,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Container(
-          width: availableSizeWidth * 0.6,
-          height: availableSizeHeight * 0.10,
+          width: 56.w,
+          height: 9.h,
           child: Column(
             children: [
               Container(
-                width: availableSizeWidth * 0.5,
-                height: availableSizeHeight * 0.03,
+                width: 30.w,
+                height: 2.h,
                 child: Text(name),
               ),
               Container(
                 alignment: Alignment.center,
-                width: availableSizeWidth * 0.9,
-                height: availableSizeHeight * 0.07,
+                width: 30.w,
+                height: 7.h,
                 child: Text(
                   data.toString() + '／' + maxdata.toString(),
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: availableSizeHeight * 0.05),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 7.sp),
                 ),
               )
             ],
@@ -340,8 +295,8 @@ Widget rate(data, maxdata, name, availableSizeWidth, availableSizeHeight) {
         ),
         Container(
           padding: EdgeInsets.all(4),
-          width: availableSizeWidth * 0.23,
-          height: availableSizeHeight * 0.11,
+          width: 10.w,
+          height: 10.h,
           child: PieData(data / maxdata * 100),
         )
       ],

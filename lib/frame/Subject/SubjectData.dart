@@ -11,15 +11,24 @@ class SubjectData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back),
+          color: Colors.pink,
+          iconSize: 40,
+        ),
+      ),
       backgroundColor: Colors.yellow,
       body: SafeArea(
           child: Column(
         children: <Widget>[
           Container(
-            height: 6.h,
-          ),
-          Container(
-              height: 9.h,
+              height: 12.h,
               child: Container(
                   alignment: Alignment.center,
                   child: RichText(
@@ -41,7 +50,7 @@ class SubjectData extends StatelessWidget {
                                 blurRadius: 1.0,
                                 color: Color.fromARGB(255, 0, 0, 0),
                               )
-                            ], fontSize: 15.sp, fontWeight: FontWeight.bold),
+                            ], fontSize: 18.sp, fontWeight: FontWeight.bold),
                           ),
                         ]),
                   ))),
@@ -71,7 +80,7 @@ class SubjectData extends StatelessWidget {
                                     )
                                   ],
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 14.sp,
+                                  fontSize: 18.sp,
                                   color: Colors.red)),
                         ]),
                   ))),
